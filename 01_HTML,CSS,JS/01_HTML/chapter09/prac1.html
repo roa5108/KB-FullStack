@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      .red {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+    <script>
+      let three = Number(prompt('몇 까지 3의 배수를 찾는가?'));
+      let arr = [];
+      for (let i = 3; i <= three; i += 3) {
+        arr.push(i);
+      }
+      let cnt = arr.length;
+      let sum_all = 0;
+      for (let j = 0; j < arr.length; j++) {
+        sum_all += arr[j];
+      }
+
+      document.write('<h1>3의 배수 찾기</h1>');
+      document.write('<p>' + arr.join(', ') + '</p>');
+      document.write(
+        '<p class="red">' + three + '까지 3의 배수의 개수 : ' + cnt + '</p>'
+      );
+      document.write(
+        '<p class="red">' + three + '까지 3의 배수의 합 : ' + sum_all + '</p>'
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
