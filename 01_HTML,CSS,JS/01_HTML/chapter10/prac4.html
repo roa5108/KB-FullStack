@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function start() {
+        num1 = parseInt(Math.random() * 10) + 1;
+        num2 = parseInt(Math.random() * 10) + 1;
+        document.getElementById('question').innerText = num1 + '+' + num2 + '=';
+        document.getElementById('result').innerText = '?';
+      }
+
+      function printResult() {
+        result = num1 + num2;
+        document.getElementById('result').innerHTML =
+          '<font color="red">' + result + '</font>';
+      }
+    </script>
+  </head>
+  <body>
+    <h3>1~10사이의 덧셈 문제를 발생합니다.</h3>
+    <br />
+    <input type="button" value="문제 생성" onclick="start()" />
+    <h3>결과보기 버튼을 누르면 답이 빨간색으로 보인다.</h3>
+
+    <h3>
+      <span id="question"></span>
+      <span id="result"></span>
+    </h3>
+    <input type="button" value="결과보기" onclick="printResult()" />
+    <div></div>
+  </body>
+</html>
