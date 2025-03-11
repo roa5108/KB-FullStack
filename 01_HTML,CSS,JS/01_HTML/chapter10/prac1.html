@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실시간 시계</title>
+    <script>
+      window.onload = function () {
+        let clock = document.getElementById('clock');
+
+        setInterval(function () {
+          let now = new Date(); // ✅ 현재 시간을 먼저 가져오기
+
+          let days = ['일', '월', '화', '수', '목', '금', '토'];
+          let yy = now.getFullYear();
+          let mm = now.getMonth() + 1;
+          let dd = now.getDate(); // ✅ now.getDate()로 수정
+          let i = now.getDay();
+          let day = days[i];
+
+          let hh = now.getHours();
+          let mi = now.getMinutes();
+          let ss = now.getSeconds();
+
+          // ✅ 월, 일, 시간, 분, 초가 한 자리 수일 경우 0을 붙여주기
+          mm = mm < 10 ? '0' + mm : mm;
+          dd = dd < 10 ? '0' + dd : dd;
+          hh = hh < 10 ? '0' + hh : hh;
+          mi = mi < 10 ? '0' + mi : mi;
+          ss = ss < 10 ? '0' + ss : ss;
+
+          let result =
+            yy +
+            '-' +
+            mm +
+            '-' +
+            dd +
+            ' (' +
+            day +
+            '요일) ' +
+            hh +
+            ':' +
+            mi +
+            ':' +
+            ss;
+
+          clock.innerHTML = result;
+        }, 1000);
+      };
+    </script>
+  </head>
+  <body>
+    <h1 id="clock"></h1>
+  </body>
+</html>
