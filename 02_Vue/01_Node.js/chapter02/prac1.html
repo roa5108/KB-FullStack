@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Display</title>
+  </head>
+  <body>
+    <h1>날짜별 영화 랭킹 사이트</h1>
+    날짜입력 (yyyymmdd) :
+    <input type="text" id="date" /> &emsp;
+    <button onclick="search()">검색</button>
+    <br /><br />
+    <div id="result"></div>
+    <script>
+      async function search() {
+        const date = document.getElementById('date').value;
+        const apiKey = 'e7d6fd03892a5903ca36fc1542d6cb01';
+        try {
+          const response = await fetch(
+            `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${apiKey}&targetDt=${date}`
+          );
+          const data = await response.json();
+          const movieData = data.boxOfficeResult.dailyBoxOfficeList;
+          console.log(movieData);
+
+          let result = '';
+
+          for (let i = 0; i < 10; i++) {
+            result += `<div>${movieData[i].rank} &emsp; ${movieData[i].movieNm}</div>`;
+            document.getElementById('result').innerHTML = result;
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    </script>
+  </body>
+</html>
