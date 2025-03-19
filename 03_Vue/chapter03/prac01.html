@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Example</title>
+    <style>
+      .list {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .list th,
+      .list td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+      }
+      .list caption {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .list col.seq {
+        width: 10%;
+      }
+      .list col.name {
+        width: 20%;
+      }
+      .list col.age {
+        width: 10%;
+      }
+      .list col.addr {
+        width: 20%;
+      }
+      .list col.done {
+        width: 15%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <table class="list">
+        <caption>
+          신상명세서
+        </caption>
+        <colgroup>
+          <col class="seq" />
+          <col class="name" />
+          <col class="age" />
+          <col class="addr" />
+          <col class="done" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+            <th>동의여부</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template v-for="item in list" :key="item.seq">
+            <tr>
+              <th>{{ item.seq }}</th>
+              <th>{{ item.name }}</th>
+              <th>{{ item.age }}</th>
+              <th>{{ item.addr }}</th>
+              <th>{{ item.done ? '동의' : '미동의' }}</th>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      const app = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            list: [
+              { seq: 1, name: '홍길동', age: 20, addr: '서울', done: true },
+              { seq: 2, name: '라이언', age: 25, addr: '제주', done: true },
+              { seq: 3, name: '네오', age: 26, addr: '울산', done: false },
+              { seq: 4, name: '프로도', age: 22, addr: '부산', done: true },
+              { seq: 5, name: '코난', age: 28, addr: '경기', done: false },
+            ],
+          };
+        },
+      });
+      app.mount('#app');
+    </script>
+  </body>
+</html>
