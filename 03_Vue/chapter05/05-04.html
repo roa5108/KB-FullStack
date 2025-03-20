@@ -6,14 +6,22 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <input
+        id="a"
+        type="text"
+        :value="name"
+        @input="(e)=>this.name=e.target.value"
+      /><br />
+      입력하신 이름 : <span>{{name}}</span>
+    </div>
 
     <script src="https://unpkg.com/vue"></script>
     <script>
       let vm = Vue.createApp({
         name: 'App',
         data() {
-          return {};
+          return { name: '' };
         },
       }).mount('#app');
     </script>
