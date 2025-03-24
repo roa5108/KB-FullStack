@@ -7,18 +7,24 @@
   </head>
   <body>
     <div id="app">
-      <input id="a" type="text" v-model="name" />
-      <br />
-      입력하신 이름 : <span>{{name}}</span>
+      <button :style="[myColor, myLayout]">테스트</button>
     </div>
 
-    <script type="text/javascript" src="https://unpkg.com/vue"></script>
-    <script type="text/javascript">
+    <script src="https://unpkg.com/vue"></script>
+    <script>
       let vm = Vue.createApp({
         name: 'App',
         data() {
           return {
-            name: '',
+            myColor: {
+              backgroundColor: 'purple',
+              color: 'yellow',
+            },
+            myLayout: {
+              width: '150px',
+              height: '80px',
+              textAlign: 'center',
+            },
           };
         },
       }).mount('#app');
