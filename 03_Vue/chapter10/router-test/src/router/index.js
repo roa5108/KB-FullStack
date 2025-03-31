@@ -11,6 +11,12 @@ import Videos from '@/pages/Videos.vue';
 import MemberInfo from '@/pages/MemberInfo.vue';
 import NotFound from '@/pages/NotFound.vue';
 
+const membersIdGuard = (to, from) => {
+  if (from.name !== 'members' && from.name !== 'members/id') {
+    return false;
+  }
+};
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -43,12 +49,6 @@ const router = createRouter({
     { path: '/:paths(.*)*', name: 'NotFound', component: NotFound },
   ],
 });
-
-const membersIdGuard = (to, from) => {
-  if (from.name !== 'members' && from.name !== 'members/id') {
-    return false;
-  }
-};
 
 router.beforeEach((to) => {
   if (to.query && Object.keys(to.query).length > 0) {
