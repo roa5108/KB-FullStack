@@ -1,48 +1,55 @@
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="./assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <h2>최신 인기곡</h2>
+    <SongList :songs="songs" />
+    <br /><br />
+    <button @click="changeModal">Teleport를 이용한 Modal 기능</button>
+    <teleport to="#modal">
+      <Modal v-if="isModal" />
+    </teleport>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script>
+import { computed } from 'vue';
+import SongList from './components/SongList.vue';
+import Modal from './components/Modal.vue';
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
+export default {
+  name: 'App',
+  components: { SongList, Modal },
+  data() {
+    return {
+      songs: [
+        { id: 1, title: 'Blueming', done: true },
+        { id: 2, title: 'Dynamite', done: true },
+        { id: 3, title: 'Lovesick Girls', done: false },
+        { id: 4, title: '마리아(Maria)', done: false },
+      ],
+      isModal: false,
+    };
+  },
+  methods: {
+    changeModal() {
+      this.isModal = true;
+      setTimeout(() => {
+        this.isModal = false;
+      }, 2000);
+    },
+  },
+  provide() {
+    return {
+      icons: {
+        checked: 'far fa-check-circle',
+        unchecked: 'far fa-circle',
+      },
+      doneCount: computed(() => {
+        return this.songs.filter((s) => s.done === true).length;
+      }),
+    };
+  },
+};
+</script>
+<style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
 </style>
